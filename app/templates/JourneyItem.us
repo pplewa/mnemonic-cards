@@ -1,7 +1,8 @@
-<li id="<%= id %>">
-	<span class="title"><i class="icon-star"></i> Journey <small>[ <%= date %> ]</small></span>
+<li id="<%= id %>" class="journey">
+	<span class="title"><i class="icon-star"></i> <%= date %></span>
 	<div class="guessed-progress">
 		<span class="guessed-label"> <%= guessed %></span>
 		<span class="guessed-bar" style="width: <%= percent %>%"><%= percent %>%</span>
 	</div>
+	<i class="icon-chevron-right"></i>
 </li>

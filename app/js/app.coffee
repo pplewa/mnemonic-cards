@@ -13,4 +13,4 @@ $ ->
 
 	# app.registry.journeys.render()
 
-document.body.addEventListener 'touchmove', (e) -> e.preventDefault()
+# document.body.addEventListener 'touchmove', (e) -> e.preventDefault()

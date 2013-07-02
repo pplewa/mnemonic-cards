@@ -29,7 +29,7 @@ class CardsView extends Backbone.View
 		@updateCounter()
 
 	updateCounter: ->
-		@counter.html "#{@swipe.getPos()} / #{@swipe.getNumSlides()}"
+		@counter.html "#{@swipe.getPos() + 1} / #{@swipe.getNumSlides()}"
 
 	guessed: ->
 		@journey.guessedCard(@swipe.getPos())

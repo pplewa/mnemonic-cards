@@ -5,11 +5,13 @@ class JourneysView extends Backbone.View
 	itemTemplate: JST['app/templates/JourneyItem.us']
 
 	events: 
-		'click li': 'openCardsView'
+		'click li.journey': 'openCardsView'
 
 	formatDate: (timestamp) ->
 		date = new Date(timestamp)
-		"#{date.getDate()} / #{date.getMonth()} / #{date.getFullYear()} - #{date.getHours()}:#{date.getMinutes()}"
+		dateString = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth()+1)).slice(-2) + '/' + date.getFullYear()
+		hourString = ('0' + date.getHours()).slice(-2) + ':' + ('0' + (date.getMinutes()+1)).slice(-2)
+		"#{dateString} - #{hourString}"
 
 	render: ->
 		# @$el.html @template()
@@ -31,6 +33,7 @@ class JourneysView extends Backbone.View
 		# this.setElement @template()
 
 	openCardsView: (e) ->
-		app.trigger 'navigate', 'journey/' + e.target.id, trigger: true
+		id = e.target.id or $(e.target).parents('li[id]').attr('id')
+		app.trigger 'navigate', "journey/#{id}", trigger: true
 
 app.JourneysView = JourneysView
