@@ -18,10 +18,14 @@ class JourneysView extends Backbone.View
 
 		@ul = @el.firstElementChild
 
+
 		app.registry.journeyCollection.each (journey) =>
+			guessed = _.reduce(journey.get('guessed'), (memo, num) -> memo + num)
 			$(@ul).append @itemTemplate
 				id: journey.get 'id'
 				date: @formatDate(journey.get 'timestamp')
+				guessed: "#{guessed} / #{journey.get('guessed').length}"
+				percent: Math.round(guessed / journey.get('guessed').length * 10000) / 100
 
 	# initialize: ->
 		# this.setElement @template()

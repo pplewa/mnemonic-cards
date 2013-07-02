@@ -13,7 +13,7 @@ class NavigationView extends Backbone.View
 		@
 
 	initialize: ->
-		_.bindAll this, 'addJourney', 'loadView'
+		_.bindAll @, 'addJourney', 'loadView'
 
 		@render()
 
@@ -30,7 +30,8 @@ class NavigationView extends Backbone.View
 		app.trigger 'navigate', 'journey/' + app.registry.journeyCollection.last().id, trigger: true
 
 	guessed: ->
-		app.registry.cards.swipe.next()
+		app.trigger 'guessed', trigger: true
+		# app.registry.cards.swipe.next()
 
 	loadView: (journey) ->
 		if journey

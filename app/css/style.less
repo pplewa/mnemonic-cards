@@ -1,4 +1,4 @@
-@mainColor: #fff;
+@mainColor: #ecf0f1;
 @lightGray: #ddd;
 
 body {
@@ -10,6 +10,11 @@ body {
 
 nav {
 	background-color: #1f8dd6;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5) inset
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 section {
@@ -29,6 +34,14 @@ section {
 		display: block;
 		// border-top: 1px @lightGray solid;
 		cursor: pointer;
+		box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+	}
+
+	#journeys li .title {
+		// text-indent: 10px;
+		display: block;
+		padding: 5px 0 10px;
+		// line-height: 
 	}
 
 	#journeys li:nth-child(even) {
@@ -79,7 +92,7 @@ section {
 	// padding: 20px;
 	// width: 300px;
 	margin: 0 auto;
-	background: #eee;
+	// background: #fff;
 }
 
 #cards li {
@@ -95,25 +108,24 @@ section {
 	height: 300px;
 	border-radius: 10px;
 	background: #fff;
-	-webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
-	box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+	box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0,0,0,0.5) inset;
 	text-align: center;
+	border: 1px #444 solid;
+	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 
 	.value {
 		text-align: center;
-		font: 100px/270px Georgia, Times New Roman, serif;
-		text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+		font: 100px/300px Georgia, Times New Roman, serif;
 	}
 
 	.label {
 		position: absolute;
 		font-size: 25px;
-		top: 5px;
+		top: 85px;
 		text-align: center;
 		width: 100%;
 		left: 0;
-		color: #fff;
-		text-shadow: 0 0 2px rgba(0,0,0,0.75);
+		color: #ddd;
 	}
 }
 
@@ -122,18 +134,51 @@ section {
 	width: 100%;
 	text-align: center;
 	margin: 0 auto;
-	font-size: 24px;
-	padding: 10px 0;
-	color: #4B4B4B;
+	font-size: 16px;
+	color: #aaa;
 	margin: 10px 0 0;
 }
 
 .pure-button {
-	background-color: #1f8dd6;
+	background-color: transparent;
 	color: #fff;
-	font-size: 120%;
+	font-size: 200%;
+	text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.pure-button:hover,
+.pure-button:focus {
+	background-image: none;
 }
 
 #guessed {
 	float: right;
+}
+
+.guessed-progress {
+	width: 100%;
+	height: 30px;
+	color: #fff;
+	line-height: 30px;
+	border-radius: 5px;
+	background: #95a5a6;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
+	padding: 2px 0;
+	text-shadow: 0 0 1px rgba(0,0,0,0.8);
+}
+
+.guessed-label {
+	float: left;
+	width: 80px;
+	text-align: center;
+}
+
+.guessed-bar {
+	float: left;
+	border-radius: 5px;
+	background: #27ae60;
+	color: #fff;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+	text-align: center;
+	min-width: 80px;
 }

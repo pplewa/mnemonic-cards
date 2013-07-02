@@ -13,8 +13,9 @@ class CardsView extends Backbone.View
 
 		@ul = @el.firstElementChild
 		@counter = @$el.find '#counter'
+		@journey = app.registry.journeyCollection.get(journey)
 
-		app.registry.journeyCollection.get(journey).get('order').forEach (order) =>
+		@journey.get('order').forEach (order) =>
 			card = app.registry.cardCollection.at(order)
 			$(@ul).append @itemTemplate 
 				label: card.get 'label'
@@ -30,8 +31,14 @@ class CardsView extends Backbone.View
 	updateCounter: ->
 		@counter.html "#{@swipe.getPos()} / #{@swipe.getNumSlides()}"
 
+	guessed: ->
+		@journey.guessedCard(@swipe.getPos())
+		@swipe.next()
+
 	initialize: ->
-		_.bindAll @
+		_.bindAll @, 'updateCounter', 'guessed'
+
 		app.on 'list', @render
+		app.on 'guessed', @guessed
 
 app.CardsView = CardsView
