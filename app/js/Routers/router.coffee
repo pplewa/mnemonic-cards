@@ -1,9 +1,10 @@
 class Router extends Backbone.Router
 
 	routes: 
-		'list/:id': 'list'
+		'journey/:id': 'journey'
+		'': 'journey'
 
-	list: (param) ->
-		app.trigger 'list', param
+	journey: (param) ->
+		app.trigger 'journey', param
 	
 app.Router = Router

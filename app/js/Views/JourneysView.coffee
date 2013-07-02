@@ -3,23 +3,23 @@ class JourneysView extends Backbone.View
 	template: JST['app/templates/JourneysView.us']
 	itemTemplate: JST['app/templates/JourneyItem.us']
 
-	# events: 
-		# 'click #new-shuffle': 'shuffleCards'
-		# 'click #shuffled-list': 'showShuffledList'
+	events: 
+		'click li': 'openCardsView'
+
+	formatDate: (timestamp) ->
+		date = new Date(timestamp)
+		"#{date.getDate()} / #{date.getMonth()} / #{date.getFullYear()} - #{date.getHours()}:#{date.getMinutes()}"
 
 	render: ->
 		@$el.html @template()
 		@ul = @el.firstElementChild
 
 		app.registry.journeyCollection.each (journey) =>
-			$(@ul).append @itemTemplate({ name: journey.id })
+			$(@ul).append @itemTemplate
+				id: journey.get 'id'
+				date: @formatDate(journey.get 'timestamp')
 
-
-	initialize: ->
-		# _.bindAll @
-		# app.registry.journeyCollection
-		# _.bindAll(this, 'render')
-
-		# @render()
+	openCardsView: (e) ->
+		app.trigger 'navigate', 'journey/' + e.target.id, trigger: true
 
 app.JourneysView = JourneysView

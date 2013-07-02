@@ -5,7 +5,7 @@ class CardCollection extends Backbone.Collection
 	localStorage: new Backbone.LocalStorage 'card-collection'
 
 	initialize: ->
-		console.log arguments
-		# this
+		@fetch()
+		@add app.cards unless @length isnt 0
 
 app.CardCollection = CardCollection

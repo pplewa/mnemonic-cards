@@ -3,9 +3,8 @@ class Card extends Backbone.Model
 	defaults:
 		label: ''
 		value: 0
-		guessed: false
 
-	toggle: ->
-        @save guessed: !@get('guessed')
+	initialize: ->
+		@save()
 
 app.Card = Card

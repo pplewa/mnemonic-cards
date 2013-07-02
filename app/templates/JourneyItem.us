@@ -1,1 +1,1 @@
-<li><%= name %></li>
+<li id="<%= id %>"><%= date %></li>

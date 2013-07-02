@@ -4,7 +4,7 @@ class NavigationView extends Backbone.View
 	template: JST['app/templates/NavigationView.us']
 
 	events: 
-		'click #new-journey': 'newJourney'
+		'click #new-journey': 'addJourney'
 		'click #show-journeys': 'showJourneys'
 
 	render: ->
@@ -12,38 +12,32 @@ class NavigationView extends Backbone.View
 		@
 
 	initialize: ->
-		_.bindAll this, 'newJourney'
-
-		app.on 'list', @showCards
+		_.bindAll this, 'addJourney', 'loadView'
 
 		@render()
 
-		@newButton = @$el.find '#new-journey'
-		@listButton = @$el.find '#show-journeys'
-		@listButton.hide()
+		app.on 'journey', @loadView
 
-	toggleView: ->
-		@newButton.toggle()
-		@listButton.toggle()
+		@addJourneyButton = @$el.find '#new-journey'
+		@backButton = @$el.find('#show-journeys').hide()
 
-	newJourney: ->
-		@toggleView()
+	addJourney: ->
 		# add list
+		app.registry.journeyCollection.create()
 		# navigate to the new list
-		app.registry.journeyCollection.create
+		app.trigger 'navigate', 'journey/' + app.registry.journeyCollection.last().id, trigger: true
 
-		app.trigger 'navigate', 'list/' + app.registry.journeyCollection.last().id, trigger: true
-		console.log 'newJourney'
-
-	showCards: ->
-		# app.registry.cards = new app.CardsView journey: {}
-		# app.registry.cards.render();
+	loadView: (journey) ->
+		if journey
+			@addJourneyButton.hide()
+			@backButton.show()
+			app.registry.cards.render(journey) 
+		else 
+			@addJourneyButton.show()
+			@backButton.hide()
+			app.registry.journeys.render()
 
 	showJourneys: ->
-		@toggleView()
 		app.trigger 'navigate', '', trigger: true
-		# app.registry.cards?.remove()
-		app.registry.journeys.render()
-		console.log 'showJourneys'
 
 app.NavigationView = NavigationView
