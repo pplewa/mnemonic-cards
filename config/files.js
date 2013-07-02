@@ -12,5 +12,27 @@
  */
 
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
-  //Override file patterns here
+  coffee: {
+    app: [
+      "app/js/namespace.coffee",
+      "app/js/Models/**/*.coffee",
+      "app/js/Collections/**/*.coffee",
+      "app/js/Views/**/*.coffee",
+      "app/js/Routers/**/*.coffee",
+      "app/js/app.coffee",
+      "app/js/**/*.coffee"
+    ]
+  },
+  js: {
+    vendor: [
+      "vendor/js/jquery.js",
+      "vendor/js/underscore.js",
+      "vendor/js/backbone.js",
+      "vendor/js/backbone.localStorage.js",
+      "vendor/js/**/*.js"
+    ]
+  },
+  template: {
+    homepage: "app/templates/MainView.us"
+  }
 });

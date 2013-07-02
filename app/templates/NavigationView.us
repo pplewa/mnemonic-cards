@@ -1,0 +1,3 @@
+<button class="pure-button" id="new-journey"><i class="icon-plus"></i></button>
+
+<button class="pure-button" id="show-journeys"><i class="icon-caret-left"></i> Shuffled List</button>
