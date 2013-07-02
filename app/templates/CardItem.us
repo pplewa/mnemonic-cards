@@ -1,1 +1,6 @@
-<li><%= name %></li>
+<li>
+	<div class="card">
+		<span class="label"><%= label %></span>
+		<span class="value"><%= value %></span>
+	</div>
+</li>

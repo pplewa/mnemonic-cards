@@ -12,3 +12,5 @@ $ ->
 	app.on 'navigate', app.registry.router.navigate
 
 	# app.registry.journeys.render()
+
+document.body.addEventListener 'touchmove', (e) -> e.preventDefault()

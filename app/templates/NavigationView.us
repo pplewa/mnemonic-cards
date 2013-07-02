@@ -1,3 +1,5 @@
 <button class="pure-button" id="new-journey"><i class="icon-plus"></i></button>
 
-<button class="pure-button" id="show-journeys"><i class="icon-caret-left"></i> Shuffled List</button>
+<button class="pure-button" id="show-journeys"><i class="icon-caret-left"></i> Journeys</button>
+
+<button class="pure-button" id="guessed">Guessed <i class="icon-ok"></i></button>

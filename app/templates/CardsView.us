@@ -1,2 +1,4 @@
-<ul>
-</ul>
+<div id="cards" class="swipe">
+	<ul class="swipe-wrap"></ul>
+	<div id="counter"></div>
+</div>

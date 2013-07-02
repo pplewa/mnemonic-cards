@@ -1,8 +1,15 @@
-@mainColor: #efefef;
+@mainColor: #fff;
 @lightGray: #ddd;
 
+body {
+	background: @mainColor;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	// position: fixed;
+	// height: 100%;
+}
+
 nav {
-	background-color: @mainColor;
+	background-color: #1f8dd6;
 }
 
 section {
@@ -14,21 +21,119 @@ section {
 		// border-bottom: 1px @lightGray solid;
 	}
 
-	li {
-		background-color: #f5f5f5;
+	#journeys li {
+		// background-color: #f5f5f5;
 		line-height: 36px;
 		padding: 5px;
+		color: #4B4B4B;
 		display: block;
 		// border-top: 1px @lightGray solid;
 		cursor: pointer;
 	}
 
-	li:nth-child(even) {
-		background-color: #fff;
+	#journeys li:nth-child(even) {
+		background-color: #eee;
 	}
 
-	li:hover, li:active {
-		background-color: @lightGray;
+	#journeys li:hover, #journeys li:active {
+		// background-color: @lightGray;
 	}
 
+}
+
+#mySwipe div b {
+  display:block;
+  font-weight:bold;
+  color:#14ADE5;
+  font-size:20px;
+  text-align:center;
+  margin:10px;
+  padding:100px 10px;
+  box-shadow: 0 1px #EBEBEB;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #E5E5E5 #D3D3D3 #B9C1C6;
+}
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+// .swipe-wrap > li {
+//   float:left;
+//   width:100%;
+//   position: relative;
+//   height: 300px;
+//   font-size: 100px;
+//   line-height: 300px;
+//   text-align: center;
+// }
+
+#cards{
+	// padding: 20px;
+	// width: 300px;
+	margin: 0 auto;
+	background: #eee;
+}
+
+#cards li {
+	position: relative;
+	float: left;
+	// width: 100%;
+}
+
+.card {
+	position: relative;
+	width: 260px;
+	margin: 10px auto;
+	height: 300px;
+	border-radius: 10px;
+	background: #fff;
+	-webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+	box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+	text-align: center;
+
+	.value {
+		text-align: center;
+		font: 100px/270px Georgia, Times New Roman, serif;
+		text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+	}
+
+	.label {
+		position: absolute;
+		font-size: 25px;
+		top: 5px;
+		text-align: center;
+		width: 100%;
+		left: 0;
+		color: #fff;
+		text-shadow: 0 0 2px rgba(0,0,0,0.75);
+	}
+}
+
+#counter {
+	background-color: @mainColor;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 24px;
+	padding: 10px 0;
+	color: #4B4B4B;
+	margin: 10px 0 0;
+}
+
+.pure-button {
+	background-color: #1f8dd6;
+	color: #fff;
+	font-size: 120%;
+}
+
+#guessed {
+	float: right;
 }
