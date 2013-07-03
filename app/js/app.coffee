@@ -1,4 +1,6 @@
 $ ->
+	# app.mainEvent = if (typeof window.ontouchstart isnt 'undefined') then 'touchstart' else 'mousedown'
+
 	app.registry = 
 		journeyCollection: new app.JourneyCollection
 		cardCollection: new app.CardCollection
@@ -8,9 +10,3 @@ $ ->
 		router: new app.Router
 
 	Backbone.history.start pushState: false
-
-	app.on 'navigate', app.registry.router.navigate
-
-	# app.registry.journeys.render()
-
-# document.body.addEventListener 'touchmove', (e) -> e.preventDefault()

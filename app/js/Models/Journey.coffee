@@ -7,6 +7,9 @@ class Journey extends Backbone.Model
 
 	initialize: ->
 		# @cards = new app.CardCollection
+		_.bindAll @, 'destroy'
+		@collection.on 'reset', @destroy
+		
 		unless @get 'id'
 			@set 'order', _.shuffle([0...app.cards.length])
 			@set 'guessed', Array.apply(null, new Array(app.cards.length)).map(Number.prototype.valueOf, 0)

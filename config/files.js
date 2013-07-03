@@ -25,7 +25,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
   },
   js: {
     vendor: [
-      "vendor/js/jquery.js",
+      "vendor/js/zepto.js",
       "vendor/js/underscore.js",
       "vendor/js/backbone.js",
       "vendor/js/backbone.localStorage.js",

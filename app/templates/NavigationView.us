@@ -1,5 +1,4 @@
-<button class="pure-button" id="new-journey"><i class="icon-plus"></i></button>
-
-<button class="pure-button" id="show-journeys"><i class="icon-caret-left"></i></button>
-
+<button class="pure-button" id="addJourney"><i class="icon-plus"></i></button>
+<button class="pure-button" id="clearJourneys"><i class="icon-remove"></i></button>
+<button class="pure-button" id="showJourneys"><i class="icon-caret-left"></i></button>
 <button class="pure-button" id="guessed"><i class="icon-ok"></i></button>

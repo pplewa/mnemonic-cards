@@ -4,9 +4,8 @@ class NavigationView extends Backbone.View
 	template: JST['app/templates/NavigationView.us']
 
 	events: 
-		'click #new-journey': 'addJourney'
-		'click #show-journeys': 'showJourneys'
-		'click #guessed': 'guessed'
+		'mousedown button': 'handleEvents'
+		'touchstart button': 'handleEvents'
 
 	render: ->
 		@$el.html @template()
@@ -14,40 +13,35 @@ class NavigationView extends Backbone.View
 
 	initialize: ->
 		_.bindAll @, 'addJourney', 'loadView'
+		app.on 'journey', @loadView
+
+		# disable scrolling on dragging @el
+		@$el.on 'touchmove', (e) -> e.preventDefault()
 
 		@render()
 
-		app.on 'journey', @loadView
-
-		@addJourneyButton = @$el.find '#new-journey'
-		@backButton = @$el.find('#show-journeys').hide()
-		@guessedButton = @$el.find('#guessed').hide()
+	handleEvents: (e) ->
+		@[e.currentTarget.id]()
 
 	addJourney: ->
 		# add list
 		app.registry.journeyCollection.create()
 		# navigate to the new list
-		app.trigger 'navigate', 'journey/' + app.registry.journeyCollection.last().id, trigger: true
+		app.registry.router.navigate 'journey/' + app.registry.journeyCollection.last().id, trigger: true
+
+	clearJourneys: ->
+		if confirm 'Remove All Journeys?'
+			app.registry.journeyCollection.each (journey) -> setTimeout(journey.destroy, 1)
 
 	guessed: ->
 		app.trigger 'guessed', trigger: true
-		# app.registry.cards.swipe.next()
 
 	loadView: (journey) ->
-		if journey
-			@addJourneyButton.hide()
-			@backButton.show()
-			@guessedButton.show()
-			app.registry.journeys.remove()
-			app.registry.cards.render(journey)
-		else 
-			@addJourneyButton.show()
-			@backButton.hide()
-			@guessedButton.hide()
-			app.registry.cards.remove()
-			app.registry.journeys.render()
+		view = if not journey then 'journeys' else 'cards'
+		@$el.removeClass().addClass(view)
+		app.registry[view].render(journey)
 
 	showJourneys: ->
-		app.trigger 'navigate', '', trigger: true
+		app.registry.router.navigate '', trigger: true
 
 app.NavigationView = NavigationView

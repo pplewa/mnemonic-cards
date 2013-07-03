@@ -4,26 +4,26 @@ class CardsView extends Backbone.View
 	template: JST['app/templates/CardsView.us']
 	itemTemplate: JST['app/templates/CardItem.us']
 
-	events:
-		'click li'  : 'toggleDone'
-
 	render: (journey) ->
+		app.registry.journeys.remove()
 		this.setElement @template()
 		$('section').html @el
 
 		@ul = @el.firstElementChild
+		fragment = document.createDocumentFragment()
 		@counter = @$el.find '#counter'
 		@journey = app.registry.journeyCollection.get(journey)
 
 		@journey.get('order').forEach (order) =>
 			card = app.registry.cardCollection.at(order)
-			$(@ul).append @itemTemplate 
+			item = $ @itemTemplate 
 				label: card.get 'label'
 				value: card.get 'value'
+			fragment.appendChild item[0]
+		$(@ul).append fragment
 
 		@swipe = Swipe @el, 
 			disableScroll: true
-			continuous: false
 			callback: @updateCounter
 
 		@updateCounter()

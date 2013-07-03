@@ -4,17 +4,39 @@
 body {
 	background: @mainColor;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	// position: fixed;
-	// height: 100%;
+	min-width: 320px;
 }
 
 nav {
 	background-color: #1f8dd6;
-	box-shadow: 0 0 3px rgba(0,0,0,0.5) inset
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+
+	&.cards #addJourney, &.cards #clearJourneys {
+		display: none;
+	}
+
+	&.journeys #showJourneys, &.journeys #guessed {
+		display: none;
+	}
+
+	.pure-button {
+		background-color: transparent;
+		color: #fff;
+		font-size: 200%;
+		text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+	}
+
+	.pure-button:hover, .pure-button:focus {
+		background-image: none;
+	}
+
+	#guessed, #clearJourneys {
+		float: right;
+	}
 }
 
 * {
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 section {
@@ -23,180 +45,138 @@ section {
 		list-style: none;
 		padding: 0;
 		margin: 0;
-		// border-bottom: 1px @lightGray solid;
 	}
 
-	#journeys li {
-		// background-color: #f5f5f5;
-		line-height: 36px;
-		padding: 5px 5px 10px;
-		color: #4B4B4B;
-		display: block;
-		// border-top: 1px @lightGray solid;
-		cursor: pointer;
-		// box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+	#journeys {
+
+		li {
+			line-height: 60px;
+			height: 60px;
+			color: #4B4B4B;
+			display: block;
+			cursor: pointer;
+			position: relative;
+			border-top: 1px #fff solid;
+			box-shadow: 0 0 1px rgba(0, 0, 0, 0.5) inset;
+
+			.icon-star {
+				font-size: 28px;
+				position: relative;
+				bottom: -4px;
+				margin: 0 5px 0 7px;
+				color: #1f8dd6;
+				text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+			}
+
+			.title {
+				float: right;
+				background: #fff;
+				height: 20px;
+				padding: 2px 5px;
+				line-height: 20px;
+				border-radius: 5px;
+				margin-right: 4px;
+				margin-top: 18px;
+				font-size: 12px;
+				box-shadow: 0 0 2px rgba(0, 0, 0, 0.5) inset;
+				// border: 1px #ddd solid;
+				position: relative;
+				z-index: 2;
+			}
+
+			.title .icon-chevron-right {
+				margin-left: 5px;
+				font-size: 16px;
+				position: relative;
+				top: 2px;
+			}
+
+			.guessed-label {
+				float: left;
+				width: 80px;
+				text-align: center;
+			}
+
+			.guessed-bar {
+				position: absolute;
+				height: 60px;
+				background: #bdc3c7;
+				color: #fff;
+				box-shadow: 0 0 2px rgba(0, 0, 0, 0.5) inset;
+				min-width: 80px;
+				text-indent: 10px;
+				text-shadow: 0 0 2px rgba(0,0,0,0.7);
+				font-size: 16px;
+				font-weight: bold;
+			}
+
+		}
+
+		li:nth-child(even) {
+			background-color: #eee;
+		}
+
+	}
+
+
+	#cards{
+		margin: 0 auto;
+
+		li {
+			position: relative;
+			float: left;
+		}
+
+		.card {
+			position: relative;
+			width: 260px;
+			margin: 10px auto;
+			height: 300px;
+			border-radius: 10px;
+			background: #fff;
+			box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0,0,0,0.5) inset;
+			text-align: center;
+			border: 1px #444 solid;
+			text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+
+			.value {
+				text-align: center;
+				font: 100px/300px Georgia, Times New Roman, serif;
+			}
+
+			.label {
+				position: absolute;
+				font-size: 25px;
+				top: 85px;
+				text-align: center;
+				width: 100%;
+				left: 0;
+				color: #ddd;
+			}
+		}
+
+	}
+
+	.swipe {
+		overflow: hidden;
+		visibility: hidden;
 		position: relative;
-		border-bottom: 1px #ccc solid;
 	}
 
-	#journeys li .icon-star {
-		font-size: 28px;
+	.swipe-wrap {
+		overflow: hidden;
 		position: relative;
-		bottom: -4px;
-		margin: 0 5px 0 7px;
-		color: #1f8dd6;
-		text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 	}
 
-	#journeys li .icon-chevron-right {
-		position: absolute;
-		top: 20px;
-		right: 20px;
-	}
-
-
-	#journeys li .title {
-		// text-indent: 10px;
-		display: block;
-		padding: 5px 0 10px;
-		// line-height: 
-	}
-
-	#journeys li:nth-child(even) {
-		background-color: #eee;
-	}
-
-	#journeys li:hover, #journeys li:active {
-		// background-color: @lightGray;
-	}
-
-}
-
-#mySwipe div b {
-  display:block;
-  font-weight:bold;
-  color:#14ADE5;
-  font-size:20px;
-  text-align:center;
-  margin:10px;
-  padding:100px 10px;
-  box-shadow: 0 1px #EBEBEB;
-  background: #fff;
-  border-radius: 3px;
-  border: 1px solid;
-  border-color: #E5E5E5 #D3D3D3 #B9C1C6;
-}
-
-.swipe {
-  overflow: hidden;
-  visibility: hidden;
-  position: relative;
-}
-.swipe-wrap {
-  overflow: hidden;
-  position: relative;
-}
-// .swipe-wrap > li {
-//   float:left;
-//   width:100%;
-//   position: relative;
-//   height: 300px;
-//   font-size: 100px;
-//   line-height: 300px;
-//   text-align: center;
-// }
-
-#cards{
-	// padding: 20px;
-	// width: 300px;
-	margin: 0 auto;
-	// background: #fff;
-}
-
-#cards li {
-	position: relative;
-	float: left;
-	// width: 100%;
-}
-
-.card {
-	position: relative;
-	width: 260px;
-	margin: 10px auto;
-	height: 300px;
-	border-radius: 10px;
-	background: #fff;
-	box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0,0,0,0.5) inset;
-	text-align: center;
-	border: 1px #444 solid;
-	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-
-	.value {
-		text-align: center;
-		font: 100px/300px Georgia, Times New Roman, serif;
-	}
-
-	.label {
-		position: absolute;
-		font-size: 25px;
-		top: 85px;
-		text-align: center;
+	#counter {
+		background-color: @mainColor;
 		width: 100%;
-		left: 0;
-		color: #ddd;
+		text-align: center;
+		margin: 0 auto;
+		font-size: 16px;
+		color: #aaa;
+		margin: 10px 0 0;
 	}
+
 }
 
-#counter {
-	background-color: @mainColor;
-	width: 100%;
-	text-align: center;
-	margin: 0 auto;
-	font-size: 16px;
-	color: #aaa;
-	margin: 10px 0 0;
-}
-
-.pure-button {
-	background-color: transparent;
-	color: #fff;
-	font-size: 200%;
-	text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
-
-.pure-button:hover,
-.pure-button:focus {
-	background-image: none;
-}
-
-#guessed {
-	float: right;
-}
-
-.guessed-progress {
-	width: 100%;
-	height: 30px;
-	color: #fff;
-	line-height: 30px;
-	border-radius: 5px;
-	background: #95a5a6;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
-	padding: 2px 0;
-	text-shadow: 0 0 1px rgba(0,0,0,0.8);
-}
-
-.guessed-label {
-	float: left;
-	width: 80px;
-	text-align: center;
-}
-
-.guessed-bar {
-	float: left;
-	border-radius: 5px;
-	background: #27ae60;
-	color: #fff;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
-	text-align: center;
-	min-width: 80px;
-}
