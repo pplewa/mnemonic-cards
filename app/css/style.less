@@ -5,11 +5,11 @@ body {
 	background: @mainColor;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	min-width: 320px;
-}
 
-nav {
-	background-color: #1f8dd6;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+	&.journeys {
+		background-position: 0 70px;
+		background-image: url('data:image/gif;base64,R0lGODlhAQA9APABAP///wAAACH/C1hNUCBEYXRhWE1QAT8AIfkEBQAAAQAsAAAAAAEAPQAAAgeMj6nL7QkKADs=');
+	}
 
 	&.cards #addJourney, &.cards #clearJourneys {
 		display: none;
@@ -18,6 +18,14 @@ nav {
 	&.journeys #showJourneys, &.journeys #guessed {
 		display: none;
 	}
+}
+
+nav {
+	background-color: #1f8dd6;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset;
+	position: fixed;
+	width: 100%;
+	z-index: 5;
 
 	.pure-button {
 		background-color: transparent;
@@ -37,9 +45,12 @@ nav {
 
 * {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-user-select: none;
 }
 
 section {
+
+	padding-top: 69px;
 
 	ul {
 		list-style: none;
@@ -48,6 +59,7 @@ section {
 	}
 
 	#journeys {
+		// overflow: hidden;
 
 		li {
 			line-height: 60px;
@@ -56,8 +68,12 @@ section {
 			display: block;
 			cursor: pointer;
 			position: relative;
-			border-top: 1px #fff solid;
+			margin-top: 1px;
 			box-shadow: 0 0 1px rgba(0, 0, 0, 0.5) inset;
+
+			&:active, &:active .guessed-bar {
+			    box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
+			}
 
 			.icon-star {
 				font-size: 28px;
@@ -152,6 +168,30 @@ section {
 				width: 100%;
 				left: 0;
 				color: #ddd;
+			}
+
+			@media (max-height: 360px) {
+				height: 180px;
+				.value {
+					font: 80px/180px Georgia, Times New Roman, serif;
+				}
+
+				.label {
+					font-size: 20px;
+					top: 35px;
+				}
+			}
+
+			@media (min-height: 548px) {
+				height: 400px;
+				.value {
+					text-align: center;
+					font: 100px/400px Georgia, Times New Roman, serif;
+				}
+
+				.label {
+					top: 125px;
+				}
 			}
 		}
 

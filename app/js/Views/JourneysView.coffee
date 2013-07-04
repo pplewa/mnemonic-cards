@@ -5,14 +5,12 @@ class JourneysView extends Backbone.View
 	itemTemplate: JST['app/templates/JourneyItem.us']
 
 	events: 
-		# 'mousedown li.journey': 'openCardsView'
-		'touchstart li.journey': 'openCardsView'
+		'click li.journey': 'openCardsView'
+		'tap li.journey': 'openCardsView'
 
-	formatDate: (timestamp) ->
-		date = new Date(timestamp)
-		dateString = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth()+1)).slice(-2) + '/' + date.getFullYear()
-		hourString = ('0' + date.getHours()).slice(-2) + ':' + ('0' + (date.getMinutes()+1)).slice(-2)
-		"#{dateString} - #{hourString}"
+	initialize: ->
+		_.bindAll @, 'loadView'
+		app.on 'journey', @loadView
 
 	render: ->
 		app.registry.cards.remove()
@@ -29,12 +27,25 @@ class JourneysView extends Backbone.View
 				date: @formatDate(journey.get 'timestamp')
 				guessed: "#{guessed} / #{journey.get('guessed').length}"
 				percent: Math.round(guessed / journey.get('guessed').length * 10000) / 100
-			fragment.appendChild item[0]
+			fragment.insertBefore item[0], fragment.firstChild
 			journey.on 'remove', -> item.remove()
 		$(@ul).append fragment
 
+	loadView: (journey) ->
+		unless journey
+			$(document.body).removeClass().addClass 'journeys'
+			@render()
+
+	formatDate: (timestamp) ->
+		date = new Date(timestamp)
+		dateString = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth()+1)).slice(-2) + '/' + date.getFullYear()
+		hourString = ('0' + date.getHours()).slice(-2) + ':' + ('0' + (date.getMinutes()+1)).slice(-2)
+		"#{dateString} - #{hourString}"
+
 	openCardsView: (e) ->
-		id = e.target.id or $(e.target).parents('li[id]').attr('id')
-		app.registry.router.navigate "journey/#{id}", trigger: true
+		# prevent firing multiple events if touch is enabled
+		return false if e.type is 'click' and typeof window.ontouchstart != 'undefined' 
+		# route to the CardsView
+		app.registry.router.navigate "journey/#{e.currentTarget.id}", trigger: true
 
 app.JourneysView = JourneysView

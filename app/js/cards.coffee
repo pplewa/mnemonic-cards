@@ -148,7 +148,7 @@ app.cards = [
         "value": "71"
     },
     {
-        "label": "GW",
+        "label": "GB",
         "value": "72"
     },
     {

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= pkg.name %></title>
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
-  </head>
-  <body touchmove="return false;">
-  	<nav></nav>
-  	<section></section>
-    <script type="text/javascript" src="<%= js %>"></script>
-  </body>
+<head>
+	<title>Cards</title>
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
+</head>
+<body>
+	<nav></nav>
+	<section></section>
+	<script type="text/javascript" src="<%= js %>"></script>
+</body>
 </html>

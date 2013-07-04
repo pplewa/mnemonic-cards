@@ -17,5 +17,8 @@ class Journey extends Backbone.Model
 	guessedCard: (at) ->
 		@save 'guessed', _.chain(@get('guessed')).splice(at, 1, 1).value()
 
+	toggleGuess: (at) ->
+		@save 'guessed', _.chain(@get('guessed')).splice(at, 1, +!@get('guessed')[at]).value()
+
 
 app.Journey = Journey
