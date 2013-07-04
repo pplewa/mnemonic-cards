@@ -2,10 +2,9 @@ mnemonic-cards is a simple cards guessing mobile web app
 ---
 
     
-While learning [Dominic System](http://en.wikipedia.org/wiki/Mnemonic_dominic_system "Dominic System") I have come into the situation, when although standard game cards are great for remembering journeys, they only cover 52 out of 100 possible numbers/actors/actions representations. This app intention is to ease learning of the remaining 48.
+While learning [Dominic System](http://en.wikipedia.org/wiki/Mnemonic_dominic_system "Dominic System") I have come into the situation, when although standard game cards are great for remembering journeys, they only cover 52 out of 100 possible mapping representations. This app intention is to ease learning of the remaining 48.
 
-![Screen 1](/screens/screen-1.png "Screen 1")
-![Screen 2](/screens/screen-2.png "Screen 2")
+![Screens](/screens/screens.png "Screens")
 
 To start up, clone the repository and run in the terminal:
 
