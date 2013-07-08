@@ -4,7 +4,6 @@ class CardsView extends Backbone.View
 	template: JST['app/templates/CardsView.us']
 	itemTemplate: JST['app/templates/CardItem.us']
 
-
 	initialize: ->
 		_.bindAll @, 'updateCounter', 'guessed', 'handleKeys', 'loadView'
 		app.on 'journey', @loadView

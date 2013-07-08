@@ -31,6 +31,10 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
       "vendor/js/backbone.js",
       "vendor/js/backbone.localStorage.js",
       "vendor/js/**/*.js"
+    ],
+    specHelpers: [
+      "spec/helpers/jquery.js",
+      "spec/helpers/**/*.js"
     ]
   },
   template: {
